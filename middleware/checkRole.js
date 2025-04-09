@@ -11,15 +11,3 @@ export const checkRole = (requiredRole) => {
     next();
   };
 };
-
-export const checkReadOnlyAccess = (req, res, next) => {
-  const userRole = req.user.role?.name;
-
-  if (userRole === "admin") {
-    return next();
-  }
-
-  return res
-    .status(403)
-    .json({ message: "Forbidden: You only have read access" });
-};
